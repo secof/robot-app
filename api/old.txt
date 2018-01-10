@@ -1,0 +1,149 @@
+folder_q = Queue(maxsize=0)
+
+# test_list = [folder_q.put(folder) for folder in tst]
+
+# while not folder_q.empty():
+#     print folder_q.get()
+#     folder_q.task_done()
+# print test_list
+
+# for folder in tst:
+#     test_list = [folder_q.put(test) for test in tst[folder]]
+
+
+
+for folder in tst:
+    test_list = [test for test in tst[folder]]
+    folder_q.put(test_list)
+
+while not folder_q.empty():
+    print folder_q.get()
+    folder_q.task_done()
+
+
+    
+# def runRobotQue(q, test_folder):
+#     #Test absolute path
+#     print "Running test: %s" % test_folder
+#     while True:
+#         test_name = q.get()
+#         testsPath = os.path.join(path, test_folder)
+#         individualTestPath = os.path.join(testsPath,test_name)
+#         #Result absolute path
+#         resultPath = os.path.join(os.environ['TEST_PATH'], "results")
+#         resultsFolder = os.path.join(resultPath, test_folder)
+#         #Log name
+#         log_name = '%s-%s.html'%(os.path.splitext(test_name)[0],dts)
+#         #Run ROBOT
+#         robot.run_cli([log_arg,log_name,result_arg,resultsFolder,var_arg,sel_host,var_arg,sel_port,var_arg,browser,var_arg,sel_os,report_arg,report,str(individualTestPath)], exit=False)
+#         # print log_arg,log_name,result_arg,resultsFolder,var_arg,sel_host,var_arg,sel_port,var_arg,browser,var_arg,sel_os,report_arg,report,str(individualTestPath)
+#         print str(individualTestPath),'\n'
+#         q.task_done()
+
+# threads = 2
+# test_queue = Queue()
+
+# for folder in tst:
+#     # for test in tst[folder]:
+#         # test_queue.put(test)
+#     worker = Thread(target=runRobotQue, args=(test_queue, folder,))
+#     # test_queue = Queue()
+#     worker.setDaemon(True)
+#     worker.start()
+
+# for folder in tst:
+#     for test in tst[folder]:
+#         print "Test: %s" % test
+#         test_queue.put(test)
+
+# test_queue.join()
+
+#------------------------------------------------------
+
+    # while not folder_q.empty():
+    #     print folder_q.get()
+    
+
+    # print "[0, 1, 4,..., 81]"
+    # print pool.map(f, range(10))
+
+    # # print same numbers in arbitrary order
+    # for i in pool.imap_unordered(f, range(10)):
+    #     print i
+
+    # # evaluate "f(20)" asynchronously
+    # res = pool.apply_async(f, (20,))      # runs in *only* one process
+    # print res.get(timeout=1)              # prints "400"
+
+    # # evaluate "os.getpid()" asynchronously
+    # res = pool.apply_async(os.getpid, ()) # runs in *only* one process
+    # print res.get(timeout=1)              # prints the PID of that process
+
+    # # launching multiple evaluations asynchronously *may* use more processes
+    # multiple_results = [pool.apply_async(os.getpid, ()) for i in range(4)]
+    # print [res.get(timeout=1) for res in multiple_results]
+
+    # # make a single worker sleep for 10 secs
+    # res = pool.apply_async(sleep, (10,))
+    # try:
+    #     print res.get(timeout=1)
+    # except TimeoutError:
+    #     print "We lacked patience and got a multiprocessing.TimeoutError"
+
+
+
+
+# def do_stuff(q):
+#   while True:
+#     print q.get()
+#     q.task_done()
+
+# q = Queue(maxsize=0)
+# num_threads = 100
+
+# for i in range(num_threads):
+#   worker = Thread(target=do_stuff, args=(q,))
+#   worker.setDaemon(True)
+#   worker.start()
+
+# for x in range(10):
+#   q.put(x)
+
+# q.join()
+
+# for key in tst:
+#     for test in tst[key]:
+#         print test
+        # runRobotCli(str(test) , str(key))
+
+
+
+
+
+# if __name__ == '__main__':
+#     random.seed(123)
+    
+#     # Define an output queue 
+#     output = mp.Queue()
+
+#     # define a example function
+#     def rand_string(length, output):
+#         """ Generates a random string of numbers, lower- and uppercase chars. """
+#         rand_str = ''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for i in range(length))
+#         output.put(rand_str)
+
+#     # Setup a list of processes that we want to run
+#     processes = [mp.Process(target=rand_string, args=(5, output)) for x in range(4)]
+
+#     # Run processes
+#     for p in processes:
+#         p.start()
+
+#     # Exit the completed processes
+#     for p in processes:
+#         p.join()
+
+#     # Get process results from the output queue
+#     results = [output.get() for p in processes]
+
+#     print(results)

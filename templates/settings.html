@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">New settings</h4>
+                                    <p class="card-category">Enter new values and save them</p>
+                                </div>
+                                <div class="card-body ">
+                                        <form method="post">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                  <label for="id_git_repo">Git Repository</label>
+                                                  <input type="text" class="form-control" id="id_git_repo" placeholder="Git repository" name="git_repo">
+                                                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                                </div>
+                                                <div class="form-group">
+                                                  <label for="id_sel_host">Selenium HUB - IP</label>
+                                                  <input type="text" class="form-control" id="id_sel_host" placeholder="Selenium HUB IP" name="sel_host">
+                                                </div>
+                                                <div class="form-group">
+                                                        <label for="id_sel_port">Selenium HUB - PORT</label>
+                                                        <input type="text" class="form-control" id="id_sel_port" placeholder="Selenium HUB PORT" name="sel_port">
+                                                      </div>
+                                                <div class="form-group">
+                                                    <label for="id_text">Selenium OS</label>
+                                                    <input type="text" class="form-control" id="id_sel_os" name="sel_os" placeholder="Selenium OS (e.g.: LINUX)">
+                                                </div>
+                                                <div class="form-group">
+                                                        <label for="id_text">Test Path</label>
+                                                        <input type="text" class="form-control" id="id_test_path" name="test_path" placeholder="TEST_PATH env var">
+                                                    </div>
+                                                <div class="form-check">
+                                                    <label>Select browser:</label>
+                                                    <br>
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-radio" type="radio" name="browser" id="id_browser" value="chrome" checked>
+                                                        Chrome
+                                                    </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-radio" type="radio" name="browser" id="id_browser" value="firefox">
+                                                        Firefox
+                                                    </label>
+                                                </div>
+                                                <br>
+                                                <button type="submit" class="btn btn-primary">Save</button>
+                                        </form>
+                                    
+                                </div>
+                                <!-- <div class="card-footer ">
+                                    <div class="legend">
+                                        <i class="fa fa-circle text-success"></i> Pass |
+                                        <i class="fa fa-circle text-warning"></i> Partial pass |
+                                        <i class="fa fa-circle text-danger"></i> Fail |
+                                    </div>
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="fa fa-clock-o"></i> Last run: 2 days ago
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                                <div class="card ">
+                                    <div class="card-header ">
+                                        <h4 class="card-title">Current settings</h4>
+                                        <!-- <p class="card-category">Current settings</p> -->
+                                    </div>
+                                    <div class="card-body ">
+                                            <table class="table table-hover">
+                                                    <thead>
+                                                        <th>Setting</th>
+                                                        <th>Value</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for key, value in old_settings.items %}
+                                                        <tr>
+                                                            <td>{{ key }}</td>
+                                                            <td>{{ value }}</td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                    </div>
+                                </div>
+                            </div>
+                    </div> 
+                </div>
+            </div>
+{% endblock %}

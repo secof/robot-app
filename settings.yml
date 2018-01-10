@@ -1,0 +1,6 @@
+Browser: !!python/unicode 'chrome'
+GitRepo: !!python/unicode 'None'
+SeleniumHost: !!python/unicode '10.10.10.10'
+SeleniumOs: !!python/unicode 'LINUX'
+SeleniumPort: 7896
+TestPath: !!python/unicode '/home/constantin/Test/test'

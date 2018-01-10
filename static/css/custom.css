@@ -1,0 +1,11 @@
+.test-passed {
+    fill: green;
+}
+
+.test-warning {
+    fill: orange;
+}
+
+.test-failed {
+    fill: red;
+}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                            <div class="col-md-12">
+                                    <div class="card card-plain table-plain-bg">
+                                        <div class="card-header ">
+                                            <!-- <h4 class="card-title">Last run results</h4> -->
+                                        </div>
+                                        <div class="card-body table-full-width table-responsive">
+                                            {% for folder, tests in folders %}
+                                            <p>{{folder}}</p>
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <th>Name</th>
+                                                    <th>Log</th>
+                                                    <th>Status</th>
+                                                </thead>
+                                                <tbody>
+                                                        {% for test, result in tests.items%}
+                                                    <tr>
+                                                        <td>{{test}} </td>
+                                                        <td><a href="/results/{{folder}}/{{test}}"><i class="fa fa-folder-open-o"></i> Open log</a></td>
+                                                        <td>Passed: {{result.1.passed}} | Failed: {{result.0.failed}}</td>
+                                                    </tr>
+                                                        {% endfor %}
+                                                </tbody>
+                                            </table>
+                                            <hr>
+                                            <br>
+                                            {% endfor %}
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>              
+                
+                </div>
+            </div>
+{% endblock %}

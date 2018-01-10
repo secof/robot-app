@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card ">
+                    <div class="card-header ">
+                        <h4 class="card-title">Last Run</h4>
+                        <p class="card-category">Tests Statistics</p>
+                    </div>
+                    <div class="card-body ">
+                        <div id="chart" class="ct-chart ct-perfect-fourth"></div>
+                    </div>
+                    <div class="card-footer ">
+                        <div class="legend">
+                            <i class="fa fa-circle text-success"></i> Pass |
+                            <i class="fa fa-circle text-danger"></i> Fail 
+                        </div>
+                        <hr>
+                        <div class="stats">
+                            <!-- <i class="fa fa-clock-o"></i> Last run: 2 days ago -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card  card-tasks">
+                    <div class="card-header ">
+                    </div>
+                    <div class="card-body table-full-width table-responsive">
+                            {% for folder, tests in folders %}
+                            <h4 class="card-title">{{folder}}</h4>
+                            <table class="table table-hover">
+                                <thead>
+                                    <th>Name</th>
+                                    <th>Log</th>
+                                    <th>Status</th>
+                                </thead>
+                                <tbody>
+                                        {% for test, result in tests.items%}
+                                    <tr>
+                                        <td>{{test}} </td>
+                                        <td><a href="/results/{{folder}}/{{test}}"><i class="fa fa-folder-open-o"></i> Open log</a></td>
+                                        <td>Passed: {{result.1.passed}} | Failed: {{result.0.failed}}</td>
+                                    </tr>
+                                        {% endfor %}
+                                </tbody>
+                            </table>
+                            <hr>
+                            <br>
+                            {% endfor %}
+                        
+                        </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
+{% endblock %}
+
+
+
+{% block script %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        var data = { 
+            series: [{
+                    value: {{passed}},
+                    name: 'passed',
+                    className: 'test-passed',
+                    },{
+                    value: {{failed}},
+                    name: 'failed',
+                    className: 'test-failed',
+            }] 
+        };
+
+        var options = {
+            donutWidth: 40,
+            startAngle: 270,
+            showLabel: true,
+        };
+        Chartist.Pie('#chart', data, options);
+    })
+</script>
+{% endblock %}
