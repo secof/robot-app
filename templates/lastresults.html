@@ -21,9 +21,9 @@
                                                 <tbody>
                                                         {% for test, result in tests.items%}
                                                     <tr>
-                                                        <td>{{test}} </td>
-                                                        <td><a href="/results/{{folder}}/{{test}}"><i class="fa fa-folder-open-o"></i> Open log</a></td>
-                                                        <td>Passed: {{result.1.passed}} | Failed: {{result.0.failed}}</td>
+                                                        <td width="60%">{{test}} </td>
+                                                        <td width="20%"><a href="/results/{{folder}}/{{test}}"><i class="fa fa-folder-open-o"></i> Open log</a></td>
+                                                        <td width="20%">Passed: {{result.1.passed}} | Failed: {{result.0.failed}}</td>
                                                     </tr>
                                                         {% endfor %}
                                                 </tbody>
