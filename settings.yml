@@ -1,5 +1,5 @@
 Browser: !!python/unicode 'firefox'
-GitPassword: !!python/unicode 'J3YUh0.NrwDd'
+GitPassword: !!python/unicode ''
 GitRepo: !!python/unicode 'https://gitlab.forge.orange-labs.fr/lab-orange/robotests.git'
 GitUser: !!python/unicode 'webdelit-a0489-devel'
 SeleniumHost: !!python/unicode '172.21.3.103'
