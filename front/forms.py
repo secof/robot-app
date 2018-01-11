@@ -7,3 +7,5 @@ class SettingsForm(forms.Form):
     sel_port = forms.IntegerField(max_value= 60000, min_value = 1024)
     browser = forms.CharField(max_length=100)
     sel_os = forms.CharField(max_length=100)
+    git_user = forms.CharField(max_length=100)
+    git_pass = forms.CharField(max_length=100)
