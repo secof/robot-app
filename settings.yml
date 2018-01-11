@@ -1,6 +1,8 @@
-Browser: !!python/unicode 'chrome'
-GitRepo: !!python/unicode 'None'
-SeleniumHost: !!python/unicode '10.10.10.10'
+Browser: !!python/unicode 'firefox'
+GitPassword: !!python/unicode 'J3YUh0.NrwDd'
+GitRepo: !!python/unicode 'https://gitlab.forge.orange-labs.fr/lab-orange/robotests.git'
+GitUser: !!python/unicode 'webdelit-a0489-devel'
+SeleniumHost: !!python/unicode '172.21.3.103'
 SeleniumOs: !!python/unicode 'LINUX'
-SeleniumPort: 7896
-TestPath: !!python/unicode '/home/constantin/Test/test'
+SeleniumPort: 4444
+TestPath: !!python/unicode '/home/constantin/Test/clone-test'

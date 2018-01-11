@@ -58,7 +58,7 @@ def testsList(request):
             os.environ["TEST_PATH"] = str(stngs["TestPath"])
             print "Path updated!"
     try:
-        path = os.path.join(os.environ['TEST_PATH'], "tests")
+        path = os.path.join(os.environ['TEST_PATH'], "testing", "tests")
         test_folders = os.listdir(path)
         test_list = {}
         for folder in test_folders:
@@ -130,7 +130,7 @@ def show_test(request, folder, name):
             os.environ["TEST_PATH"] = str(stngs["TestPath"])
             print "Path updated!"
     try:
-        path = os.path.join(os.environ['TEST_PATH'], "tests")
+        path = os.path.join(os.environ['TEST_PATH'], "testing", "tests")
         robot_test = os.path.join(path, folder, name)
         with open(robot_test, 'r') as rtest:
             content = rtest.read()
@@ -160,9 +160,10 @@ def robotSettings(request):
     else:
         form = SettingsForm()
     try:
-        with open('settings.yml', 'r') as outfile:
+        set_file = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..','settings.yml'))
+        with open(set_file, 'r') as outfile:
             o_set = yaml.load(outfile)
-            oldest = {}
+            oldset = {}
             for key in o_set:
                 if key != 'GitPassword':
                     oldset[key] = o_set[key]

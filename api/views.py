@@ -29,7 +29,7 @@ def startTesting(request):
         pid_file = 'process.pid'
         f = open(pid_file,'r')
         pid_number = f.readline()
-        if not psutil.pid_exists(int(pid_number)):
+        if (not psutil.pid_exists(int(pid_number))) or (psutil.Process(pid_number).status() == psutil.STATUS_ZOMBIE):
             app = os.path.join(os.path.dirname(os.path.realpath(__file__)),"startTesting.py")
             pid = subprocess.Popen([sys.executable, app]).pid
             # print pid

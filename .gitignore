@@ -8,6 +8,7 @@
 __pycache__/
 local_settings.py
 db.sqlite3
+settings.yml
 media
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
@@ -114,3 +115,4 @@ venv.bak/
 .mypy_cache/
 
 # End of https://www.gitignore.io/api/django,python
+settings.yml
