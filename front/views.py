@@ -152,6 +152,8 @@ def robotSettings(request):
                 SeleniumOs = form.cleaned_data['sel_os'],
                 Browser = form.cleaned_data['browser'],
                 TestPath = form.cleaned_data['test_path'],
+                GitUser = form.cleaned_data['git_user'],
+                GitPassword = form.cleaned_data['git_pass'],
                 )
             with open('settings.yml', 'w') as outfile:
                 yaml.dump(data, outfile, default_flow_style=False)
@@ -159,9 +161,11 @@ def robotSettings(request):
         form = SettingsForm()
     try:
         with open('settings.yml', 'r') as outfile:
-            oldset = yaml.load(outfile)
-            # for key in oldset:
-            #     print key, oldset[key]
+            o_set = yaml.load(outfile)
+            oldest = {}
+            for key in o_set:
+                if key != 'GitPassword':
+                    oldset[key] = o_set[key]
     except:
         oldset = "No settings present!"
     context = {

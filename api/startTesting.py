@@ -3,12 +3,12 @@ import sys
 import robot
 import yaml
 from time import gmtime, strftime, localtime
+from urlparse import urlparse
 
 
 #####################################################################################
 path = os.path.join(os.environ['TEST_PATH'], "tests")
 test_folder = os.listdir(path)
-# print test_folder
 dts=strftime("%d.%m.%Y_%H.%M", localtime())
 var_arg = '--variable'
 log_arg = '--log'
@@ -34,12 +34,19 @@ try:
         sel_port = '"SELENIUM_PORT:%s"'%(oldset['SeleniumPort'])
         browser = '"BROWSER:%s"'%(oldset['Browser'])
         sel_os = '"SELENIUM_OS:%s"'%(oldset['SeleniumOs'])
-        # for key in oldset:
-        #     print key, oldset[key]
+        git_user = oldset['GitUser']
+        git_password = oldset['GitPassword']
+        git_repo = urlparse(oldset['GitRepo'])
+        clone_cmd = "git clone https://%s:%s@%s/%s %s"%(git_user,git_password,git_repo.netloc,git_repo.path,os.environ['TEST_PATH'])
+        os.system(clone_cmd)
+        #not needed path = os.path.join(os.environ['TEST_PATH'], os.path.splitext(os.path.basename(urlparse.urlsplit(git_repo).path))[0], "tests")
+        # test_folder = os.listdir(path)
+
 except:
     print "No settings present!"
 
-
+# GitUser = form.cleaned_data['git_user'],
+# GitPassword = form.cleaned_data['git_pass'],
 
 
 for folder in test_folder:
